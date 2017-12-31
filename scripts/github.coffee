@@ -29,5 +29,5 @@ module.exports = (robot) ->
 
         assignee = if issue.assignee then "  and  assigned  to  `#{issue.assignee.login}`" else ''
 
-        msg.send "#{type}  `#{data.owher}/#{data.repo}##{data.number}`  by  `#{issue.user.login}`  is  `#{issue.state}`#{assignee}   #{issue.html_url}"
+        msg.send "#{type}  `#{data.owner}/#{data.repo}##{data.number}`  by  `#{issue.user.login}`  is  `#{issue.state}`#{assignee}   #{issue.html_url}"
 
