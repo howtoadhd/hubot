@@ -1,0 +1,38 @@
+{
+  "name": "hubot-discord",
+  "version": "2.0.0-alpha",
+  "description": "Hubot adapter for discord",
+  "main": "src/discord.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bufferutil": "^3.0.2",
+    "discord.js": "github:hydrabolt/discord.js",
+    "opusscript": "0.0.3",
+    "parent-require": "^1.0.0",
+    "request": "^2.81.0"
+  },
+  "peerDependencies": {
+    "hubot": ">=2.0"
+  },
+  "devDependencies": {
+    "coffee-script": ">=1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thetimpanist/hubot-discord"
+  },
+  "author": "Chuck Newport",
+  "contributors": [
+    {
+      "name": "Matt Voboril",
+      "email": "matej@voboril.org",
+      "url": "http://morningstar-wf.com"
+    }
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "license": "ISC"
+}
