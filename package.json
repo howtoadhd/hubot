@@ -6,7 +6,7 @@
   "description": "How To ADHD Robot Buttler",
   "dependencies": {
     "coffee-script": "^1.12.7",
-    "github": "^13.0.1",
+    "github": "^13.1.0",
     "hubot": "^2.19.0",
     "hubot-discord": "https://github.com/ciaranlangton/hubot-discord",
     "hubot-redis-brain": "0.0.4",
