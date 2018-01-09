@@ -6,7 +6,6 @@
   "description": "How To ADHD Robot Buttler",
   "dependencies": {
     "coffee-script": "^1.12.7",
-    "github": "^13.1.0",
     "hubot": "^2.19.0",
     "hubot-discord": "file:./modules/discord-adapter",
     "hubot-github-auth": "file:./modules/github-auth",

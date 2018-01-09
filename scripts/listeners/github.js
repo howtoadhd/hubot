@@ -1,11 +1,8 @@
-const GitHubApi = require('github');
-const github = new GitHubApi;
-
 module.exports = robot =>
 
   robot.hear(/([a-z0-9._-]+\/)?([a-z0-9._-]+)#([0-9]+)/ig, msg => {
     for (let match of msg.match) {
-      let data = msg.match.split(/[\/|#]/);
+      let data = match.split(/[\/|#]/);
 
 
       if (data.length === 2) {
@@ -25,7 +22,7 @@ module.exports = robot =>
         "number": data[2],
       };
 
-      github.issues.get(data, (err, res) => {
+      robot.github().issues.get(data, (err, res) => {
         if (err) {
           return;
         }
@@ -38,5 +35,3 @@ module.exports = robot =>
       });
     }
   });
-
-
