@@ -30,7 +30,13 @@ module.exports = robot =>
       '```',
       'Hubot the rules            - Make sure Hubot still knows the rules.',
       'Hubot open the <type> door - Self explanatory really.',
-      '```'
+      '```',
+
+      '**Profile**',
+      '```',
+      'github link   - Link your GitHub account to me.',
+      'github unlink - Unlink your GitHub account from me.',
+      '```',
     ];
 
     const emit = response.join('\n');
