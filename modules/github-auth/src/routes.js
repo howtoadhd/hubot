@@ -31,7 +31,7 @@ module.exports = robot => {
     res.writeHead(303, {
       Location: OAuth2.getAuthorizeUrl({
         redirect_uri: `${process.env.HUBOT_HOSTNAME}/auth/github/callback?id=${req.query.id}`,
-        scope: "user,public_repo"
+        scope: "read:user,public_repo"
       })
     });
 
