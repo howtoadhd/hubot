@@ -1,51 +1,66 @@
 module.exports = (robot) => {
 
-  robot.respond(/rebuild ([a-z0-9._-]+)$/i, msg => {
+  robot.respond(/rebuild ([a-z0-9._-]+) ?(\S+)?$/i, msg => {
 
-    const repo = {"owner": 'howtoadhd', "repo": msg.match[1]};
+    const repo = {
+      "owner": process.env.HUBOT_GITHUB_ORG,
+      "repo": msg.match[1],
+      "branch": msg.match[2],
+    };
 
     robot.github().repos.get(repo, (err, ghResponse) => {
       if (err) {
-        msg.reply(`Repository \`${process.env.HUBOT_GITHUB_ORG}/${msg.match[1]}\` does not exist.`);
+        msg.reply(`Repository \`${repo.owner}/${repo.repo}\` does not exist.`);
         return;
       }
 
       const ghRepo = ghResponse.data;
 
-      robot.travis().repos('howtoadhd', msg.match[1]).get((err, ciResponse) => {
+      if (!repo.branch) {
+        repo['branch'] = ghRepo.default_branch;
+      }
+
+      robot.github().repos.getBranch(repo, (err, ghBranch) => {
         if (err) {
+          msg.reply(`Branch \`${repo.owner}/${repo.repo}#${repo.branch}\` does not exist.`);
           return;
         }
 
-        const ciRepo = ciResponse.repo;
-
-        if (!ciRepo.active) {
-          msg.reply(`Repository \`${process.env.HUBOT_GITHUB_ORG}/${msg.match[1]}\` is inactive.`);
-          return;
-        }
-
-        robot.travis().repos('howtoadhd', msg.match[1]).branches(ghRepo.default_branch).get((err, ciResponse) => {
+        robot.travis().repos(repo.owner, repo.repo).get((err, ciResponse) => {
           if (err) {
             return;
           }
-          const ciBranch = ciResponse.branch;
 
-          robot.travis.user(msg.envelope.user.id, (err, travis) => {
+          const ciRepo = ciResponse.repo;
+
+          if (!ciRepo.active) {
+            msg.reply(`Repository \`${repo.owner}/${repo.repo}\` is inactive.`);
+            return;
+          }
+
+          robot.travis().repos(repo.owner, repo.repo).branches(repo.branch).get((err, ciResponse) => {
             if (err) {
-              msg.reply(err);
               return;
             }
+            const ciBranch = ciResponse.branch;
 
-            travis.builds(ciBranch.id).restart.post((err, ciBranch) => {
+            robot.travis.user(msg.envelope.user.id, (err, travis) => {
               if (err) {
+                msg.reply(err);
                 return;
               }
 
-              if (!ciBranch.result) {
-                msg.reply(ciBranch.flash[0].error)
-              }
+              travis.builds(ciBranch.id).restart.post((err, ciBranch) => {
+                if (err) {
+                  return;
+                }
 
-              msg.reply('I have spoken to Travis and said he will get right on that.')
+                if (!ciBranch.result) {
+                  msg.reply(ciBranch.flash[0].error)
+                }
+
+                msg.reply('I have spoken to Travis and said he will get right on that.')
+              });
             });
           });
         });
