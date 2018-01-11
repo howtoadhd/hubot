@@ -4,5 +4,6 @@
   "hubot-rules",
   "hubot-seriouslyguys",
   "hubot-shipit",
-  "hubot-tell"
+  "hubot-tell",
+  "hubot-travis-ci"
 ]

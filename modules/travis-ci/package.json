@@ -1,0 +1,18 @@
+{
+  "name": "hubot-travis-ci",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "travis-ci": "^2.1.1"
+  },
+  "peerDependencies": {
+    "hubot": ">=2.0",
+    "hubot-github-auth": "^0.1.0"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}

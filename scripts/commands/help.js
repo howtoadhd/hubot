@@ -7,7 +7,7 @@ module.exports = robot =>
       'Hubot uptime                       - Show the status of the monitored sites',
       //'Hubot build status                 - Get the build status of all repos',
       //'Hubot build status <repo>          - Get the build status of <repo>',
-      //'Hubot rebuild <repo>               - Trigger a TravisCI build for <repo>\'s default branch',
+      'Hubot rebuild <repo>               - Trigger a TravisCI build for <repo>\'s default branch',
       //'Hubot rebuild <repo> <branch>      - Trigger a TravisCI build for <branch> of <repo>',
       //'Hubot cancel build <repo>          - Cancel a TravisCI build for <repo>\'s default branch',
       //'Hubot cancel build <repo> <branch> - Cancel a TravisCI build for <branch> of <repo>',
