@@ -35,10 +35,10 @@ module.exports = robot => {
 
       if (signed) {
 
-        const type = ciRes.pull_request ? "Pull Request" : "Branch";
+        const type = payload.pull_request ? "Pull Request" : "Branch";
 
         let status, emoji;
-        switch (ciRes.status_message) {
+        switch (payload.status_message) {
           case "Pending":
             emoji = "❕";
             status = "is pending 😀";
@@ -73,12 +73,12 @@ module.exports = robot => {
             break;
           default:
             res.json({});
-            console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unwanted build status: ' + ciRes.status_message}));
+            console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unwanted build status: ' + payload.status_message}));
             return;
             break;
         }
 
-        msg.send( `${emoji} Build ${ciRes.id} of ${type} ${ciRes.repository.name}#${ciRes.branch} by ${ciRes.author_name} ${status} ${ciRes.build_url}` );
+        msg.send( `${emoji} Build ${payload.id} of ${type} ${payload.repository.name}#${payload.branch} by ${payload.author_name} ${status} ${payload.build_url}` );
         console.log(JSON.stringify({service: 'Travis Webhook', error: 'Webhook Success.'}));
         res.json({});
       } else {
