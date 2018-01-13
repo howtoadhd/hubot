@@ -5,7 +5,7 @@ const
 
 module.exports = (robot) => {
 
-  const api = (cb) => {
+  const api = () => {
     return new Travis({
       version: '2.0.0',
       headers: {
