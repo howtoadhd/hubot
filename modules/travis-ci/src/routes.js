@@ -3,7 +3,7 @@ const
 
 module.exports = robot => {
 
-  robot.router.get('/webhooks/travis', (req, res) => {
+  robot.router.post('/webhooks/travis', (req, res) => {
 
     if (!req.body.payload) {
       res.json({error: 'Invalid payload.'});
