@@ -37,14 +37,6 @@ module.exports = robot => {
 
         let status, emoji;
         switch (payload.status_message) {
-          case "Pending":
-            emoji = "❕";
-            status = "is pending 😀";
-            break;
-          case "Passed":
-            emoji = "✅";
-            status = "has passed 😀";
-            break;
           case "Fixed":
             emoji = "✅";
             status = "is fixed 😀";
