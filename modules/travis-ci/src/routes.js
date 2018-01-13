@@ -73,7 +73,7 @@ module.exports = robot => {
             break;
           default:
             res.json({});
-            console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unwanted build status.'}));
+            console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unwanted build status: ' + ciRes.status_message}));
             return;
             break;
         }
