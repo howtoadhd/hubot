@@ -20,6 +20,8 @@ module.exports = robot => {
     const travisSignature = Buffer.from(req.headers.signature, 'base64');
     const payload = req.body.payload;
 
+    console.log(req.body);
+
     robot.travis().config.get((err, ciRes) => {
       if (err) {
         res.json({error: 'Unable to get TravisCI public key.'});
