@@ -20,7 +20,7 @@ module.exports = robot => {
     const travisSignature = Buffer.from(req.headers.signature, 'base64');
     const payload = req.body.payload;
 
-    console.log(req.body);
+    console.log(payload);
 
     robot.travis().config.get((err, ciRes) => {
       if (err) {
@@ -75,12 +75,15 @@ module.exports = robot => {
             break;
           default:
             res.json({});
-            console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unwanted build status: ' + payload.status_message}));
+            console.log(JSON.stringify({
+              service: 'Travis Webhook',
+              error: 'Unwanted build status: ' + payload.status_message
+            }));
             return;
             break;
         }
 
-        msg.send( `${emoji} Build ${payload.id} of ${type} ${payload.repository.name}#${payload.branch} by ${payload.author_name} ${status} ${payload.build_url}` );
+        msg.send(`${emoji} Build ${payload.id} of ${type} ${payload.repository.name}#${payload.branch} by ${payload.author_name} ${status} ${payload.build_url}`);
         console.log(JSON.stringify({service: 'Travis Webhook', error: 'Webhook Success.'}));
         res.json({});
       } else {
