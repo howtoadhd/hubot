@@ -18,9 +18,7 @@ module.exports = robot => {
     }
 
     const travisSignature = Buffer.from(req.headers.signature, 'base64');
-    const payload = JSON.parse(req.body.payload);
-
-    console.log(payload);
+    let payload = req.body.payload;
 
     robot.travis().config.get((err, ciRes) => {
       if (err) {
@@ -36,6 +34,7 @@ module.exports = robot => {
         .verify(travisPublicKey, travisSignature);
 
       if (signed) {
+        payload = JSON.parse(payload);
 
         const type = payload.pull_request ? "Pull Request" : "Branch";
 
