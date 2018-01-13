@@ -82,7 +82,7 @@ module.exports = robot => {
             break;
         }
 
-        msg.send(`${emoji} Build ${payload.id} of ${type} ${payload.repository.name}#${payload.branch} by ${payload.author_name} ${status} ${payload.build_url}`);
+        robot.messageRoom(process.env.HUBOT_DISCORD_ROOM_ID, `${emoji} Build ${payload.id} of ${type} ${payload.repository.name}#${payload.branch} by ${payload.author_name} ${status} ${payload.build_url}`);
         console.log(JSON.stringify({service: 'Travis Webhook', error: 'Webhook Success.'}));
         res.json({});
       } else {
