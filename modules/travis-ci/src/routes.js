@@ -7,11 +7,13 @@ module.exports = robot => {
 
     if (!req.body.payload) {
       res.json({error: 'Invalid payload.'});
+      console.log(JSON.stringify({service: 'Travis Webhook', error: 'Invalid payload.'}));
       return;
     }
 
     if (!req.headers.signature) {
       res.json({error: 'Unsigned Request'});
+      console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unsigned Request'}));
       return;
     }
 
@@ -21,6 +23,7 @@ module.exports = robot => {
     robot.travis().config.get((err, ciRes) => {
       if (err) {
         res.json({error: 'Unable to get TravisCI public key.'});
+        console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unable to get TravisCI public key.'}));
         return;
       }
       const travisPublicKey = ciRes.config.notifications.webhook.public_key;
@@ -70,12 +73,16 @@ module.exports = robot => {
             break;
           default:
             res.json({});
+            console.log(JSON.stringify({service: 'Travis Webhook', error: 'Unwanted build status.'}));
             return;
             break;
         }
 
         msg.send( `${emoji} Build ${ciRes.id} of ${type} ${ciRes.repository.name}#${ciRes.branch} by ${ciRes.author_name} ${status} ${ciRes.build_url}` );
+        console.log(JSON.stringify({service: 'Travis Webhook', error: 'Webhook Success.'}));
         res.json({});
+      } else {
+        console.log(JSON.stringify({service: 'Travis Webhook', error: 'Invalid Signature.'}));
       }
     });
   });
