@@ -9,7 +9,7 @@
   "dependencies": {
     "bufferutil": "^3.0.2",
     "discord.js": "github:hydrabolt/discord.js",
-    "opusscript": "0.0.3",
+    "opusscript": "0.0.6",
     "parent-require": "^1.0.0",
     "request": "^2.81.0"
   },
