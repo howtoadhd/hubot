@@ -2,6 +2,11 @@ module.exports = robot =>
 
   robot.respond(/help/i, msg => {
     const response = [
+      '**Forums**',
+      '```',
+      'Hubot forum user <username> - Show info about a Discourse user',
+      '```',
+
       '**Dev**',
       '```',
       'Hubot uptime                       - Show the status of the monitored sites',
