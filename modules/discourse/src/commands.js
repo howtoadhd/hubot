@@ -1,12 +1,29 @@
 const
   moment = require('moment-timezone'),
   querystring = require('querystring'),
-  request = require("request");
-
-const
+  request = require("request"),
   root_url = process.env.HUBOT_DISCOURSE_URL,
   api_username = process.env.HUBOT_DISCOURSE_API_USERNAME,
   api_key = process.env.HUBOT_DISCOURSE_API_KEY;
+
+let
+  allowed_roles = (process.env.HUBOT_DISCOURSE_MOD_ALLOWED_ROLES || '').split(','),
+  allowed_users = (process.env.HUBOT_DISCOURSE_MOD_ALLOWED_USERS || '').split(',');
+
+is_authorized = (user) => {
+  for (let i = 0; i < user.roles.length++; i++) {
+    let role = user.roles[i];
+
+    if (allowed_roles.indexOf(role) > -1) {
+      return true;
+    }
+  }
+
+  if (allowed_users.indexOf(user.id) > -1) {
+    return true;
+  }
+  return false;
+};
 
 module.exports = (robot) => {
 
@@ -47,6 +64,11 @@ module.exports = (robot) => {
   });
 
   robot.respond(/forum mod (\S+)$/i, msg => {
+    if (!is_authorized(msg.envelope.user)) {
+      msg.reply('Im afraid i cant let you do that!');
+      return;
+    }
+
     robot.http(`${root_url}/users/${msg.match[1]}.json`).get()((err, response, body) => {
       if (err) {
         msg.send(`The forums are confusing me: ${err}`);
@@ -92,6 +114,11 @@ module.exports = (robot) => {
   });
 
   robot.respond(/forum unmod (\S+)$/i, msg => {
+    if (!is_authorized(msg.envelope.user)) {
+      msg.reply('Im afraid i cant let you do that!');
+      return;
+    }
+
     robot.http(`${root_url}/users/${msg.match[1]}.json`).get()((err, response, body) => {
       if (err) {
         msg.send(`The forums are confusing me: ${err}`);
