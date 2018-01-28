@@ -10,18 +10,21 @@ let
   allowed_roles = (process.env.HUBOT_DISCOURSE_MOD_ALLOWED_ROLES || '').split(','),
   allowed_users = (process.env.HUBOT_DISCOURSE_MOD_ALLOWED_USERS || '').split(',');
 
-is_authorized = (user) => {
+const is_authorized = (user) => {
   for (let i = 0; i < user.roles.length++; i++) {
     let role = user.roles[i];
 
     if (allowed_roles.indexOf(role) > -1) {
+      console.log('Mod Authorized by role');
       return true;
     }
   }
 
   if (allowed_users.indexOf(user.id) > -1) {
+    console.log('Mod Authorized by user id');
     return true;
   }
+  console.log('Mod Unauthorized');
   return false;
 };
 
