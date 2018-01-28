@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "moment-timezone": "^0.5.7"
+    "moment-timezone": "^0.5.7",
+    "request": "^2.83.0"
   },
   "peerDependencies": {
     "hubot": ">=2.0"

@@ -4,7 +4,9 @@ module.exports = robot =>
     const response = [
       '**Forums**',
       '```',
-      'Hubot forum user <username> - Show info about a Discourse user',
+      'Hubot forum user <username>  - Show info about a Discourse user',
+      'Hubot forum mod <username>   - Grant a user Discourse mod',
+      'Hubot forum unmod <username> - Revoke Discourse mod from a user',
       '```',
 
       '**Dev**',
