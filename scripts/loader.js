@@ -6,4 +6,8 @@ const
 module.exports = robot => {
   robot.load(commandsPath);
   robot.load(listenersPath);
+
+  robot.router.get('/', (req, res) => {
+    res.send('Nothing to see here.')
+  });
 };
