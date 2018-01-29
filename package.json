@@ -4,6 +4,9 @@
   "private": true,
   "author": "LoreleiAurora <iam@l5i.me>",
   "description": "How To ADHD Robot Buttler",
+  "engines": {
+    "node": "9.3.x"
+  },
   "dependencies": {
     "coffee-script": "^1.12.7",
     "hubot": "^2.19.0",
