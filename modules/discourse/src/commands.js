@@ -15,16 +15,13 @@ const is_authorized = (user) => {
     let role = user.roles[i];
 
     if (allowed_roles.indexOf(role) > -1) {
-      console.log('Mod Authorized by role');
       return true;
     }
   }
 
   if (allowed_users.indexOf(user.id) > -1) {
-    console.log('Mod Authorized by user id');
     return true;
   }
-  console.log('Mod Unauthorized');
   return false;
 };
 
