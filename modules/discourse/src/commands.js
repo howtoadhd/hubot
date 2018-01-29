@@ -11,7 +11,7 @@ let
   allowed_users = (process.env.HUBOT_DISCOURSE_MOD_ALLOWED_USERS || '').split(',');
 
 const is_authorized = (user) => {
-  for (let i = 0; i < user.roles.length++; i++) {
+  for (let i = 0; i < user.roles.length; i++) {
     let role = user.roles[i];
 
     if (allowed_roles.indexOf(role) > -1) {
