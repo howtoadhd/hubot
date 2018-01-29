@@ -36,7 +36,7 @@ module.exports = robot =>
         const name = decodeHtmlEntity(monitor.friendlyname);
 
         const response = [
-          `**${name}**   ${monitor.url}   ${monitor.port}`,
+          `**${name}**   \`${monitor.url}   ${monitor.port}\``,
           '```',
           `  Current   ${status}`,
           `  1 Day     ${monitor.customuptimeratio[0]}%`,
