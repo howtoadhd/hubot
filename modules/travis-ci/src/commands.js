@@ -46,12 +46,13 @@ module.exports = (robot) => {
 
             robot.travis.user(msg.envelope.user.id, (err, travis) => {
               if (err) {
-                msg.reply(err);
+                msg.reply(JSON.stringify(err));
                 return;
               }
 
               travis.builds(ciBranch.id).restart.post((err, ciBranch) => {
                 if (err) {
+                  msg.reply(JSON.stringify(err));
                   return;
                 }
 
