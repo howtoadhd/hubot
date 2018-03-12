@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "github": "^13.1.0",
+    "github": "^14.0.0",
     "oauth": "^0.9.15"
   },
   "peerDependencies": {
