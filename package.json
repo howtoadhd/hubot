@@ -13,7 +13,7 @@
     "hubot-discord": "file:./modules/discord-adapter",
     "hubot-discourse": "file:./modules/discourse",
     "hubot-github-auth": "file:./modules/github-auth",
-    "hubot-redis-brain": "0.0.4",
+    "hubot-redis-brain": "1.0.0",
     "hubot-rules": "^0.1.2",
     "hubot-seriouslyguys": "^1.0.0",
     "hubot-shipit": "https://github.com/alfredk/hubot-shipit/archive/image_repair.tar.gz",
