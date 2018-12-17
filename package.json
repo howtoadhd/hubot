@@ -19,7 +19,7 @@
     "hubot-shipit": "https://github.com/alfredk/hubot-shipit/archive/image_repair.tar.gz",
     "hubot-tell": "^1.2.4",
     "hubot-travis-ci": "file:./modules/travis-ci",
-    "jsdom": "^9.12.0",
+    "jsdom": "^13.1.0",
     "moment-timezone": "^0.5.7",
     "uptime-robot": "^1.3.0",
     "xml2js": "0.1.14"
